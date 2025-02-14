@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐-=Acts=-⭐</title>
+    <style>
+        @font-face {
+            font-family: 'Fiance';
+            src: url('love.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Fiance';
+            background-image: url('fondo3.jpg');
+            background-size: 55%;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .documento {
+            background: linear-gradient(to bottom, #ff4d4d, #4d79ff);
+            width: 70%;
+            max-width: 52.8%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            border: 5px solid #000000;
+        }
+        .sector {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            border: 5px dotted #000000;
+        }
+        #sector1 {
+            background: linear-gradient(to bottom, #cc0000, #660000);
+            font-size: 4em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        #sectorrojo {
+            background: linear-gradient(to bottom, #cc0000, #cc0000);
+            font-size: 4em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        #sectora-r {
+            background: linear-gradient(to bottom, #3366cc, #cc0000);
+            font-size: 4em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        #medio {
+            background: linear-gradient(to bottom, #990000, #3366cc);
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+        }
+        .sub-sector {
+            background: linear-gradient(to bottom, #ff1a1a, #1a53ff);
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sub-sector img {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            border: 3px solid white;
+            transition: transform 0.3s ease;
+        }
+        .sub-sector a {
+            width: 650px;
+            height: 250px;
+        }
+        .sub-sector img:hover {
+            transform: scale(1.1);
+        }
+        #sector2 {
+            background: linear-gradient(to bottom, #b500cb, #cb0059);
+            font-size: 2em;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            border-radius: 5px;
+            border: 4px dotted #000000;
+        }
+        .flecha {
+            position: fixed; /* Se mantiene en la pantalla al hacer scroll */
+            top: 10px; /* Distancia desde la parte superior */
+            left: 10px; /* Distancia desde la izquierda */
+            width: 50px; /* Tamaño de la imagen */
+            height: auto; /* Mantiene la proporción */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: transform 0.2s ease-in-out; /* Animación al pasar el cursor */
+        }
+
+        .flecha:hover {
+            transform: scale(1.1); /* Hace la flecha un poco más grande al pasar el cursor */
+        }
+    </style>
+</head>
+<body>   
+	<a href="love.html">
+        <img src="flecha.png" alt="Volver" class="flecha">
+    </a>
+    <div class="documento">
+        <div id="sector1" class="sector">🔥️ Actividades 🔥️</div>
+        <div id="medio" class="sector">
+            <div id="sectora-r" class="sub-sector">
+               <a href="https://garticphone.com/es" target="_blank"> <img src="gartic.png" alt="Juegos"> </a>
+            </div>
+            <div  id="sectorrojo" class="sub-sector">
+               <a href="https://search.brave.com/search?q=roblox&source=desktop" target="_blank"> <img src="roblox.jpg" alt="Juegos" > </a>
+            </div>
+            <div  id="sectorrojo" class="sub-sector">
+               <a href="https://moomoo.io/" target="_blank"> <img src="momo.png" alt="Moomoo.io"> </a>
+            </div>
+            <div class="sub-sector">
+               <a href="https://www.friv.com/z/play/juegos.html" target="_blank"> <img src="friv.jpg" alt="JuegosFriv"> </a>
+            </div>
+        </div>
+        <div id="sector2">
+            <p>🎵🎶 Recuerda darle Click para que se escuche las musiquitas 🎵🎶</p>
+        </div>
+        <audio id="lovemp3" loop>
+            <source src="love.mp3" type="audio/mpeg">
+        </audio>
+        <script>
+            document.addEventListener("click", function() {
+                const audio = document.getElementById("lovemp3");
+                if (audio.paused) {
+                    audio.play();
+                }
+            }, { once: true }); 
+        </script>
+    </div>
+</body>
+</html>

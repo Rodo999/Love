@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐-=Recuerdos=-⭐</title>
+    <style>
+        @font-face {
+            font-family: 'Fiance';
+            src: url('love.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Fiance';
+            background-image: url('fondo2.jpg');
+            background-size: 55%;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .documento {
+            background: linear-gradient(to bottom, #ffa4a4, #ffd7a4);
+            width: 70%;
+            max-width: 52.8%;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            border: 5px solid #000000;
+        }
+        .sector {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 5px;
+            border: 4px dotted #000000;
+        }
+        #sector1 {
+            background: linear-gradient(to bottom, #ffcc00, #ff6600);
+            font-size: 4em;
+            font-weight: bold;
+            text-align: center;
+        }
+        #medio {
+            background: linear-gradient(to bottom, #ff6600, #fff88b);
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+			padding: 0;
+			padding-top: 2%;
+			padding-bottom: 2%;
+        }
+		#medio img {
+			margin: 0;
+			padding: 0;
+		}
+        #sector2 {
+            background: linear-gradient(to bottom, #fff88b, #ffcc00);
+            font-size: 3em;
+            text-align: center;
+        }
+        .fotos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .fotos img {
+            max-width: 100px;
+            height: auto;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .fotos img:hover {
+            transform: scale(1.1);
+        }
+        #xd {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+        #xd img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 15px;
+        }
+        #xd p {
+            margin-top: 10px;
+            font-size: 1.4em;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #cerrar {
+            margin-top: 10px;
+            cursor: pointer;
+            background: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .flecha {
+            position: fixed; /* Se mantiene en la pantalla al hacer scroll */
+            top: 10px; /* Distancia desde la parte superior */
+            left: 10px; /* Distancia desde la izquierda */
+            width: 50px; /* Tamaño de la imagen */
+            height: auto; /* Mantiene la proporción */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+            transition: transform 0.2s ease-in-out; /* Animación al pasar el cursor */
+        }
+
+        .flecha:hover {
+            transform: scale(1.1); /* Hace la flecha un poco más grande al pasar el cursor */
+        }
+    </style>
+</head>
+<body>   
+	<a href="love.html">
+        <img src="flecha.png" alt="Volver" class="flecha">
+    </a>
+    <div class="documento">
+        <div id="sector1" class="sector">🖼️ Recuerdos 🖼️</div>
+        <div id="medio" class="sector">
+            <div class="fotos">				
+				<img src="1.jpeg" alt="" onclick="MostrarDes('1.jpeg', 'Una Obra maestra el tinaco 🥵')">
+				<img src="2.jpeg" alt="" onclick="MostrarDes('2.jpeg', 'Ese Micoide un loquillo 😈')">
+				<img src="3.jpeg" alt="" onclick="MostrarDes('3.jpeg', 'TE AMO ❤️')">
+				<img src="4.jpeg" alt="" onclick="MostrarDes('4.jpeg', 'Creció 🥹')">
+				<img src="5.jpeg" alt="" onclick="MostrarDes('5.jpeg', 'Lo intenté y no me salió xd')">
+				<img src="6.jpeg" alt="" onclick="MostrarDes('6.jpeg', 'Corrientes Cláscias 😼')">
+				<img src="7.jpeg" alt="" onclick="MostrarDes('7.jpeg', 'Mirala 😮')">
+				<img src="8.jpeg" alt="" onclick="MostrarDes('8.jpeg', 'TILINA.exe')">
+				<img src="9.jpeg" alt="" onclick="MostrarDes('9.jpeg', 'Yo y los comunicologues cuando:')">
+				<img src="10.jpeg" alt="" onclick="MostrarDes('10.jpeg', 'La Doc 🩺')">
+				<img src="11.jpeg" alt="" onclick="MostrarDes('11.jpeg', 'Mira esa hoja 🫦')">
+				<img src="12.jpeg" alt="" onclick="MostrarDes('12.jpeg', 'un Roblos en Logica y Programación 😍')">
+				<img src="13.jpeg" alt="" onclick="MostrarDes('13.jpeg', 'FOTOCARA 😋')">
+				<img src="14.jpeg" alt="" onclick="MostrarDes('14.jpeg', 'Bellako Original')">
+				<img src="15.jpeg" alt="" onclick="MostrarDes('15.jpeg', 'Bellako Copia :0')">
+				<img src="16.jpeg" alt="" onclick="MostrarDes('16.jpeg', 'Una torta de tamal 🍓')">
+				<img src="17.jpeg" alt="" onclick="MostrarDes('17.jpeg', 'GRANOS 🤪(yo ese)')">
+				<img src="18.jpeg" alt="" onclick="MostrarDes('18.jpeg', 'Transdiciplina 📍')">
+				<img src="19.jpeg" alt="" onclick="MostrarDes('19.jpeg', 'LOL 💛')">
+				<img src="20.jpeg" alt="" onclick="MostrarDes('20.jpeg', '12 pejecoins 💵')">
+				<img src="21.jpeg" alt="" onclick="MostrarDes('21.jpeg', 'Micoide sabe cosas 😻')">
+				<img src="22.jpeg" alt="" onclick="MostrarDes('22.jpeg', 'No lo alimentan pobrecito 🥺')">
+				<img src="23.jpeg" alt="" onclick="MostrarDes('23.jpeg', 'Odio las fotos de una vez 👿')">
+				<img src="24.jpeg" alt="" onclick="MostrarDes('24.jpeg', 'Besarme??? 😱😱')">
+				<img src="25.jpeg" alt="" onclick="MostrarDes('25.jpeg', 'JURO que no veo esto 😓')">
+				<img src="26.jpeg" alt="" onclick="MostrarDes('26.jpeg', 'Ojos 👀')">
+				<img src="27.jpeg" alt="" onclick="MostrarDes('27.jpeg', '')">
+				<img src="28.jpeg" alt="" onclick="MostrarDes('28.jpeg', 'Ojos 👀 al cuadrado')">
+				<img src="29.jpeg" alt="" onclick="MostrarDes('29.jpeg', 'Hola tilín 👋')">
+				<img src="30.jpeg" alt="" onclick="MostrarDes('30.jpeg', 'TAPAO' 🛌🏻')">
+				<img src="31.jpeg" alt="" onclick="MostrarDes('31.jpeg', 'Una Princesa Divina 👑')">
+				<img src="32.jpeg" alt="" onclick="MostrarDes('32.jpeg', 'DICK 🔥🔥')">
+				<img src="33.jpeg" alt="" onclick="MostrarDes('33.jpeg', 'Ly :D')">
+				<img src="34.jpeg" alt="" onclick="MostrarDes('34.jpeg', 'Que lindote 😳')">
+				<img src="35.jpeg" alt="" onclick="MostrarDes('35.jpeg', 'Miradas que juzgan :O')">
+				<img src="36.jpeg" alt="" onclick="MostrarDes('36.jpeg', 'Ñam ❤️‍🔥')">
+				<img src="37.jpeg" alt="" onclick="MostrarDes('37.jpeg', 'Regresando de Natación 🏊')">
+				<img src="38.jpeg" alt="" onclick="MostrarDes('38.jpeg', 'TIKTOK FACE 🫀')">
+				<img src="39.jpeg" alt="" onclick="MostrarDes('39.jpeg', 'No se ni como hice eso XD')">
+				<img src="40.jpeg" alt="" onclick="MostrarDes('40.jpeg', 'HUSH HUSH 🖤')">
+				<img src="41.jpeg" alt="" onclick="MostrarDes('41.jpeg', 'Poción 🍷')">
+				<img src="42.jpeg" alt="" onclick="MostrarDes('42.jpeg', 'Cuando era pequeñe 🥳')">
+				<img src="43.jpeg" alt="" onclick="MostrarDes('43.jpeg', 'Me maltrata 🥺🥺')">
+				<img src="44.jpeg" alt="" onclick="MostrarDes('44.jpeg', 'Concentración al Fallo 🧠')">
+				<img src="45.jpeg" alt="" onclick="MostrarDes('45.jpeg', 'Marcado 🐺🐺🐺')">
+				<img src="46.jpeg" alt="" onclick="MostrarDes('46.jpeg', 'Un pez se ve mejor 🐟')">
+				<img src="47.jpeg" alt="" onclick="MostrarDes('47.jpeg', '🌼🌼🌼🌼🌼🌼')">
+				<img src="48.jpeg" alt="" onclick="MostrarDes('48.jpeg', 'Twins? 🫂')">
+				<img src="49.jpeg" alt="" onclick="MostrarDes('49.jpeg', 'Concha 🫓')">
+				<img src="50.jpeg" alt="" onclick="MostrarDes('50.jpeg', 'Dos loquillos enamorados C:')">
+				<img src="51.jpeg" alt="" onclick="MostrarDes('51.jpeg', 'Mi día Favorito 💫')">
+				<img src="52.jpeg" alt="" onclick="MostrarDes('52.jpeg', 'Like like like ojala ser el')">
+				<img src="53.jpeg" alt="" onclick="MostrarDes('53.jpeg', 'Puro Diseño 💋')">
+				<img src="54.jpeg" alt="" onclick="MostrarDes('54.jpeg', 'miradas que atraviesan 🥵')">
+				<img src="55.jpeg" alt="" onclick="MostrarDes('55.jpeg', 'Te amo robloxiana 😚')">
+				<img src="56.jpeg" alt="" onclick="MostrarDes('56.jpeg', 'Flores 💐')">
+				<img src="57.jpeg" alt="" onclick="MostrarDes('57.jpeg', 'JAJAJAJAJAJA OK entiendo')">
+				<img src="58.jpeg" alt="" onclick="MostrarDes('58.jpeg', 'Pura PC GAMER 🎮')">
+				<img src="59.jpeg" alt="" onclick="MostrarDes('59.jpeg', 'No quieres un mordisko?❤️‍🔥')">
+				<img src="60.jpeg" alt="" onclick="MostrarDes('60.jpeg', 'Q guapa 😘')">
+				<img src="61.jpeg" alt="" onclick="MostrarDes('61.jpeg', 'Ese chacalón 🤤')">
+				<img src="62.jpeg" alt="" onclick="MostrarDes('62.jpeg', 'Divino ángulo (así te veo)')">
+				<img src="63.jpeg" alt="" onclick="MostrarDes('63.jpeg', 'Que hermosa 😇')">
+				<img src="64.jpeg" alt="" onclick="MostrarDes('64.jpeg', 'Soy y simepre sere tu cara de bola 🤗')">
+				<img src="65.jpeg" alt="" onclick="MostrarDes('65.jpeg', 'tqm virtualito 😘')">
+				<img src="66.jpeg" alt="" onclick="MostrarDes('66.jpeg', '💗 Tu ese 💗')">
+				<img src="67.jpeg" alt="" onclick="MostrarDes('67.jpeg', 'GUAU GUAU 🐶')">
+				<img src="68.jpeg" alt="" onclick="MostrarDes('68.jpeg', 'Camará al fallo 📸')">
+				<img src="69.jpeg" alt="" onclick="MostrarDes('69.jpeg', 'Ojazos 🫵')">
+				<img src="70.jpeg" alt="" onclick="MostrarDes('70.jpeg', 'JAJAJAJAJAJ salgo muy white 🤔')">
+				<img src="71.jpeg" alt="" onclick="MostrarDes('71.jpeg', '🍭 Paleta 🍭')">
+				<img src="72.jpeg" alt="" onclick="MostrarDes('72.jpeg', 'COCO? 🥥')">
+				<img src="73.jpeg" alt="" onclick="MostrarDes('73.jpeg', '😽😽😽')">
+				<img src="74.jpeg" alt="" onclick="MostrarDes('74.jpeg', 'PObre Minion, murió 😨')">
+				<img src="75.jpeg" alt="" onclick="MostrarDes('75.jpeg', 'Me encantas sabes?')">
+				<img src="76.jpeg" alt="" onclick="MostrarDes('76.jpeg', 'Mi tilin graduandose 😎')">
+            </div>
+        </div>
+        <div id="sector2" class="sector">Recuerda darle Click para que se escuche las musiquitas 🎵🎶</div>
+        
+        <audio id="lovemp3" loop>
+            <source src="love.mp3" type="audio/mpeg">
+        </audio>
+        
+        <div id="xd">
+            <img id="Img" src="" alt="Imagen ampliada">
+            <p id="txt"></p>
+            <button id="cerrar" onclick="cerrarxd()">Cerrar</button>
+        </div>
+    </div>
+    
+    <script>
+        function MostrarDes(imageSrc, text) {
+            document.getElementById('Img').src = imageSrc;
+            document.getElementById('txt').textContent = text;
+            document.getElementById('xd').style.display = "flex";
+        }
+        
+        function cerrarxd() {
+            document.getElementById('xd').style.display = "none";
+        }
+        
+        document.addEventListener("click", function() {
+            const audio = document.getElementById("lovemp3");
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
