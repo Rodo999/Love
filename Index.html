@@ -245,12 +245,12 @@
             canvas.height = window.innerHeight;
         });      
         
-	window.addEventListener("load", function() {
-            const audio = document.getElementById("lovemp3");
-            audio.play().catch(function(error) {
-                console.log("El navegador ha bloqueado la reproducción automática del audio.");
-            });
-        });
+	document.addEventListener("click", function() {
+		const audio = document.getElementById("lovemp3");
+		if (audio.paused) {
+			audio.play();
+		}
+	}, { once: true }); 
     </script>
 </body>
 </html>
