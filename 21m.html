@@ -1,71 +1,330 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animación de Flores</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Pasto Ondulado</title>
     <style>
         body {
+            margin: 0;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100vw;
             height: 100vh;
-            background-color: #87CEEB;
-            overflow: hidden;
+            background: url('fondono.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            box-sizing: border-box; /* Asegura que el tamaño incluye padding y borde */
         }
-        .container {
+
+        .grass-container {
             position: relative;
-            width: 300px;
-            height: 400px;
+            width: 104vw;
+            height: 50vh;
+            overflow: hidden;
+            margin-bottom: -55vh;
+            margin-left: -2vw;
         }
-        .flor {
+
+        .triangle {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 0.5vh solid transparent;
+            border-right: 0.5vh solid transparent;
+            border-bottom: 25vh solid green;
+            transform-origin: bottom;
+            animation: wave 3s infinite ease-in-out;
+        }
+
+        .particle-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .particle {
+            position: absolute;
+            bottom: -101vh;
+            width: 1vh;
+            height: 1vh;
+            background: yellow;
+            opacity: 0;
+            border-radius: 50%;
+            animation: rise 10s infinite;
+        }
+
+        .tulip-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 150;
+        }
+
+        .tulip {
+            position: absolute;
+            bottom: 0;
+            width: 6.24vh; /* Agrandar un 30% más */
+            height: 46.40664vh; /* Agrandar un 30% más en altura */
+            transform-origin: bottom center;
+            animation: sway 3s infinite ease-in-out;
+        }
+
+        .tulip-flower {
+            position: absolute;
+            bottom: 44.37264vh; /* Ajustar la posición para que el tallo y las hojas estén debajo */
+            left: 50%;
+            width: 9.36vh; /* Agrandar un 30% más */
+            height: 9.36vh; /* Agrandar un 30% más */
+            transform: translateX(-50%);
+            z-index: 2; /* Asegurar que los pétalos estén arriba */
+        }
+
+        .petal {
+            position: absolute;
+            bottom: 0;
+            width: 5.616vh; /* Forma de elipse ancha, agrandar un 30% más */
+            height: 9.36vh; /* Agrandar un 30% más */
+            border-radius: 50%; /* Redondear todos los vértices */
+            background: linear-gradient(to top, #FFEB3B, #FFC107); /* Gradiente */
+        }
+
+        .petal.center {
+            left: 50%;
+            bottom: 1.56vh; /* Subir el pétalo del centro */
+            transform: translateX(-50%) rotate(0deg);
+            background: linear-gradient(to top, #FFC107, #FF9800); /* Gradiente mejorado */
+            height: 7.488vh; /* Reducir el tamaño del pétalo central en un 20% */
+        }
+
+        .petal.left {
+            left: 25%;
+            transform: translateX(-50%) rotate(-30deg);
+            background: linear-gradient(to top, #FFEB3B, #FFA000); /* Gradiente mejorado */
+        }
+
+        .petal.right {
+            right: 25%;
+            transform: translateX(50%) rotate(30deg);
+            background: linear-gradient(to top, #FFEB3B, #FFA000); /* Gradiente mejorado */
+        }
+
+        .tulip-stem {
             position: absolute;
             bottom: 0;
             left: 50%;
-            transform: translateX(-50%) scale(0);
-            width: 60px;
-            height: 80px;
-            background: url('https://i.imgur.com/O3zSjRh.png') no-repeat center;
-            background-size: contain;
-            cursor: pointer;
+            width: 1.56vh; /* Agrandar un 30% más */
+            height: 46.40664vh; /* Agrandar un 30% más en altura */
+            background: linear-gradient(to bottom, #388E3C, #2E7D32); /* Gradiente para el tallo */
+            border-radius: 0.78vh; /* Bordes redondeados para el tallo */
+            transform: translateX(-50%);
+            z-index: 1; /* Asegurar que el tallo esté debajo de los pétalos */
         }
-        .carta {
+
+        .tulip-leaf {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 150px;
-            height: 100px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
+            width: 1.664vh; /* Agrandar un 30% más y luego reducir un 20% */
+            height: 8.32vh; /* Agrandar un 30% más y luego reducir un 20% */
+            background: linear-gradient(to bottom, #4CAF50, #388E3C); /* Gradiente para las hojas */
+            border-radius: 50%; /* Bordes redondeados en todas las esquinas */
+            transform-origin: bottom;
+            animation: leafSway 3s infinite ease-in-out;
+            z-index: 1; /* Asegurar que las hojas estén debajo de los pétalos */
+        }
+
+        .tulip-leaf.left {
+            left: 50%; /* Centrar en el tallo */
+            transform: translateX(-50%) rotate(-45deg) translate(-1.04vh, 1.04vh); /* Posición inicial en diagonal */
+        }
+
+        .tulip-leaf.right {
+            left: 50%; /* Centrar en el tallo */
+            transform: translateX(-50%) rotate(45deg) translate(1.04vh, 1.04vh); /* Posición inicial en diagonal */
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(8deg);
+            }
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.8;
+                box-shadow: 0 0 10px yellow, 0 0 20px yellow;
+            }
+            50% {
+                opacity: 1;
+                box-shadow: 0 0 20px yellow, 0 0 30px yellow;
+            }
+            70% {
+                opacity: 0.2;
+                box-shadow: 0 0 10px yellow, 0 0 20px yellow;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        @keyframes leafSway {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(10deg);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="flor"></div>
-        <div class="carta">💌 ¡Un mensaje especial!</div>
+    <div class="terrain-container"></div>
+    <div class="grass-container">
+        <!-- Triángulos ondulados se generarán aquí -->
     </div>
+    <div class="particle-container"></div>
+    <div class="tulip-container"></div>
     <script>
-        const flor = document.querySelector('.flor');
-        const carta = document.querySelector('.carta');
+        document.addEventListener("DOMContentLoaded", function() {
+            const grassContainer = document.querySelector('.grass-container');
+            const particleContainer = document.querySelector('.particle-container');
+            const tulipContainer = document.querySelector('.tulip-container');
 
-        // Animar la flor brotando
-        gsap.to(flor, { scale: 1, duration: 2, ease: "elastic.out(1, 0.5)" });
-        
-        // Movimiento sutil de la flor
-        gsap.to(flor, { y: -10, repeat: -1, yoyo: true, duration: 2, ease: "sine.inOut" });
+            for (let i = 0; i < 800; i++) {
+                const triangle = document.createElement('div');
+                triangle.classList.add('triangle');
 
-        // Al hacer clic en la flor, mostrar la carta
-        flor.addEventListener('click', () => {
-            gsap.to(carta, { scale: 1, duration: 0.5, ease: "back.out(1.7)" });
+                // Generar dispersión en el eje Y
+                const yPos = Math.random() * -1; // Rango de 0vh a 5vh
+                triangle.style.bottom = `${yPos}vh`;
+                triangle.style.zIndex = Math.floor(10 - yPos); // Invertir el orden de las capas
+
+                // Generar tonos de verde aleatorios
+                const greenTone = `rgb(${Math.random() * 50}, ${100 + Math.random() * (155 - yPos * 5)}, ${Math.random() * 50})`;
+                triangle.style.borderBottomColor = greenTone;
+
+                // Tamaño aleatorio de los triángulos
+                const size = 20 + Math.random() * 12; // Altura entre 10vh y 15vh
+                triangle.style.borderLeftWidth = `${size / 20}vh`;
+                triangle.style.borderRightWidth = `${size / 20}vh`;
+                triangle.style.borderBottomWidth = `${size}vh`;
+
+                // Posición aleatoria de los triángulos
+                triangle.style.left = `${Math.random() * 104}vw`; // Aumentar el rango para que no se vean los bordes
+                triangle.style.animationDelay = `${Math.random() * 0.5}s`;
+
+                grassContainer.appendChild(triangle);
+            }
+
+            for (let i = 0; i < 50; i++) { // Reducir la cantidad de partículas
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Generar tonos de amarillo aleatorios
+                const yellowTone = `rgb(255, ${255 - Math.random() * 155}, 0)`;
+                particle.style.background = yellowTone;
+
+                // Posición aleatoria de las partículas
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.bottom = `${Math.random() * 20}vh`;
+                particle.style.animationDelay = `${Math.random() * 10}s`; // Aumentar el ciclo de animación
+
+                particleContainer.appendChild(particle);
+            }
+
+            // Reutilizar partículas
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(particle => {
+                particle.addEventListener('animationiteration', () => {
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    particle.style.bottom = `${Math.random() * 10}vh`;
+                });
+            });
+
+            // Generar 12 tulipanes amarillos con tallo y hojas redondeadas
+            const tulipCount = 12;
+            const sectorWidth = 100 / tulipCount; // Ancho de cada sector
+
+            for (let i = 0; i < tulipCount; i++) {
+                const tulip = document.createElement('div');
+                tulip.classList.add('tulip');
+
+                // Ajustar el tamaño de cada tulipán de forma aleatoria entre el 70% y el 100%
+                const scale = 0.7 + Math.random() * 0.3;
+                tulip.style.transform = `scale(${scale})`;
+
+                const tulipFlower = document.createElement('div');
+                tulipFlower.classList.add('tulip-flower');
+
+                const petalCenter = document.createElement('div');
+                petalCenter.classList.add('petal', 'center');
+
+                const petalLeft = document.createElement('div');
+                petalLeft.classList.add('petal', 'left');
+
+                const petalRight = document.createElement('div');
+                petalRight.classList.add('petal', 'right');
+
+                tulipFlower.appendChild(petalCenter);
+                tulipFlower.appendChild(petalLeft);
+                tulipFlower.appendChild(petalRight);
+
+                const stem = document.createElement('div');
+                stem.classList.add('tulip-stem');
+
+                tulip.appendChild(stem);
+                tulip.appendChild(tulipFlower);
+
+                // Generar entre 1 y 3 hojas por tulipán
+                const numLeaves = Math.floor(Math.random() * 3) + 1;
+                const leafSectorHeight = 46.40664 / numLeaves; // Altura de cada sector
+
+                for (let j = 0; j < numLeaves; j++) {
+                    const leaf = document.createElement('div');
+                    leaf.classList.add('tulip-leaf');
+                    leaf.style.bottom = `${leafSectorHeight * j + leafSectorHeight / 2}vh`; // Posición en medio de cada sector
+                    if (Math.random() > 0.5) {
+                        leaf.classList.add('left');
+                    } else {
+                        leaf.classList.add('right');
+                    }
+                    tulip.appendChild(leaf);
+                }
+
+                // Posición aleatoria de los tulipanes dentro de su sector en el eje X
+                const sectorStart = i * sectorWidth;
+                const sectorEnd = sectorStart + sectorWidth;
+                const leftPosition = sectorStart + Math.random() * sectorWidth;
+                tulip.style.left = `${leftPosition}vw`;
+                tulip.style.bottom = `${Math.random() * 14 - 15}vh`; // Rango de -1vh a -15vh en el eje Y
+
+                tulipContainer.appendChild(tulip);
+            }
         });
     </script>
 </body>
