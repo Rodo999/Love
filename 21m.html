@@ -134,7 +134,7 @@
             position: absolute;
             width: 1.664vh; /* Agrandar un 30% más y luego reducir un 20% */
             height: 8.32vh; /* Agrandar un 30% más y luego reducir un 20% */
-            background: linear-gradient(to bottom, #4CAF50, #388E3C); /* Gradiente para las hojas */
+            background: linear-gradient(to bottom, #81C784, #66BB6A); /* Gradiente más claro para las hojas */
             border-radius: 50%; /* Bordes redondeados en todas las esquinas */
             transform-origin: bottom;
             animation: leafSway 3s infinite ease-in-out;
@@ -142,13 +142,13 @@
         }
 
         .tulip-leaf.left {
-            left: 50%; /* Centrar en el tallo */
-            transform: translateX(-50%) rotate(-45deg) translate(-1.04vh, 1.04vh); /* Posición inicial en diagonal */
+            left: 40%; /* Centrar en el tallo */
+            transform: translateX(-90%) rotate(-45deg) translate(-1.04vh, 1.04vh); /* Ajustar para el nuevo tamaño */
         }
 
         .tulip-leaf.right {
-            left: 50%; /* Centrar en el tallo */
-            transform: translateX(-50%) rotate(45deg) translate(1.04vh, 1.04vh); /* Posición inicial en diagonal */
+            left: 40%; /* Centrar en el tallo */
+            transform: translateX(-10%) rotate(45deg) translate(1.04vh, 1.04vh); /* Ajustar para el nuevo tamaño */
         }
 
         @keyframes wave {
@@ -194,7 +194,7 @@
 
         @keyframes leafSway {
             0%, 100% {
-                transform: rotate(-5deg);
+                transform: rotate(-4deg);
             }
             50% {
                 transform: rotate(10deg);
@@ -302,12 +302,12 @@
 
                 // Generar entre 1 y 3 hojas por tulipán
                 const numLeaves = Math.floor(Math.random() * 3) + 1;
-                const leafSectorHeight = 46.40664 / numLeaves; // Altura de cada sector
+                const leafSectorHeight = (46.40664 - 5) / numLeaves; // Altura de cada sector, menos 3vh
 
                 for (let j = 0; j < numLeaves; j++) {
                     const leaf = document.createElement('div');
                     leaf.classList.add('tulip-leaf');
-                    leaf.style.bottom = `${leafSectorHeight * j + leafSectorHeight / 2}vh`; // Posición en medio de cada sector
+                    leaf.style.bottom = `${leafSectorHeight * j + leafSectorHeight / 2 + 3}vh`; // Posición en medio de cada sector, más 3vh
                     if (Math.random() > 0.5) {
                         leaf.classList.add('left');
                     } else {
@@ -318,7 +318,6 @@
 
                 // Posición aleatoria de los tulipanes dentro de su sector en el eje X
                 const sectorStart = i * sectorWidth;
-                const sectorEnd = sectorStart + sectorWidth;
                 const leftPosition = sectorStart + Math.random() * sectorWidth;
                 tulip.style.left = `${leftPosition}vw`;
                 tulip.style.bottom = `${Math.random() * 14 - 15}vh`; // Rango de -1vh a -15vh en el eje Y
