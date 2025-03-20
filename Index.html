@@ -175,142 +175,11 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        function calculateDistance(index, total, maxDistance) {
-            return (maxDistance / total) * (index + 1);
-        }
-
-        function getPlanetColors(name) {
-            const rootStyles = getComputedStyle(document.documentElement);
-            switch (name) {
-                case 'Mercurio':
-                    return [rootStyles.getPropertyValue('--mercurio-color1'), rootStyles.getPropertyValue('--mercurio-color2')];
-                case 'Venus':
-                    return [rootStyles.getPropertyValue('--venus-color1'), rootStyles.getPropertyValue('--venus-color2')];
-                case 'Tierra':
-                    return [rootStyles.getPropertyValue('--tierra-color1'), rootStyles.getPropertyValue('--tierra-color2'), rootStyles.getPropertyValue('--tierra-color3')];
-                case 'Marte':
-                    return [rootStyles.getPropertyValue('--marte-color1'), rootStyles.getPropertyValue('--marte-color2')];
-                case 'Júpiter':
-                    return [rootStyles.getPropertyValue('--jupiter-color1'), rootStyles.getPropertyValue('--jupiter-color2'), rootStyles.getPropertyValue('--jupiter-color3')];
-                case 'Saturno':
-                    return [rootStyles.getPropertyValue('--saturno-color1'), rootStyles.getPropertyValue('--saturno-color2')];
-                case 'Urano':
-                    return [rootStyles.getPropertyValue('--urano-color1'), rootStyles.getPropertyValue('--urano-color2')];
-                case 'Neptuno':
-                    return [rootStyles.getPropertyValue('--neptuno-color1'), rootStyles.getPropertyValue('--neptuno-color2')];
-                default:
-                    return ['#ffffff', '#000000'];
-            }
-        }
-
-        function getPlanetBorder(name) {
-            const rootStyles = getComputedStyle(document.documentElement);
-            switch (name) {
-                case 'Mercurio':
-                    return rootStyles.getPropertyValue('--mercurio-border');
-                case 'Venus':
-                    return rootStyles.getPropertyValue('--venus-border');
-                case 'Tierra':
-                    return rootStyles.getPropertyValue('--tierra-border');
-                case 'Marte':
-                    return rootStyles.getPropertyValue('--marte-border');
-                case 'Júpiter':
-                    return rootStyles.getPropertyValue('--jupiter-border');
-                case 'Saturno':
-                    return rootStyles.getPropertyValue('--saturno-border');
-                case 'Urano':
-                    return rootStyles.getPropertyValue('--urano-border');
-                case 'Neptuno':
-                    return rootStyles.getPropertyValue('--neptuno-border');
-                default:
-                    return '#000000';
-            }
-        }
-
-        const planetsData = [
-            { name: 'Mercurio', size: 5, speed: 0.02 },
-            { name: 'Venus', size: 7, speed: 0.015 },
-            { name: 'Tierra', size: 8, speed: 0.01 },
-            { name: 'Marte', size: 6, speed: 0.008 },
-            { name: 'Júpiter', size: 14, speed: 0.005 },
-            { name: 'Saturno', size: 12, speed: 0.004 },
-            { name: 'Urano', size: 10, speed: 0.003 },
-            { name: 'Neptuno', size: 10, speed: 0.002 }
-        ];
-
-        "class Planeta {"
-            constructor({ name, size, speed, distance }) {
-                this.name = name;
-                this.colors = getPlanetColors(name);
-                this.border = getPlanetBorder(name);
-                this.size = size;
-                this.speed = speed;
-                this.distance = distance;
-                this.angle = Math.random() * Math.PI * 2;
-                this.x = canvas.width / 2 + Math.cos(this.angle) * this.distance;
-                this.y = canvas.height / 2 + Math.sin(this.angle) * this.distance;
-            }
-
-            update() {
-                this.angle += this.speed;
-                this.x = canvas.width / 2 + Math.cos(this.angle) * this.distance;
-                this.y = canvas.height / 2 + Math.sin(this.angle) * this.distance;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                const gradient = ctx.createLinearGradient(this.x - this.size, this.y - this.size, this.x + this.size, this.y + this.size);
-                gradient.addColorStop(0, this.colors[0].trim());
-                gradient.addColorStop(1, this.colors[1].trim());
-                ctx.fillStyle = gradient;
-                ctx.fill();
-                ctx.strokeStyle = this.border.trim();
-                ctx.lineWidth = 1;
-                ctx.stroke();
-                ctx.restore();
-            }
-        }
-
-        class Luna {
-            constructor(tierra) {
-                this.tierra = tierra;
-                this.distance = 20;
-                this.size = 2;
-                this.speed = 0.03;
-                this.angle = Math.random() * Math.PI * 2;
-                this.x = this.tierra.x + Math.cos(this.angle) * this.distance;
-                this.y = this.tierra.y + Math.sin(this.angle) * this.distance;
-            }
-
-            update() {
-                this.angle += this.speed;
-                this.x = this.tierra.x + Math.cos(this.angle) * this.distance;
-                this.y = this.tierra.y + Math.sin(this.angle) * this.distance;
-            }
-
-            draw() {
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                const gradient = ctx.createLinearGradient(this.x - this.size, this.y - this.size, this.x + this.size, this.y + this.size);
-                gradient.addColorStop(0, '#bdbdbd');
-                gradient.addColorStop(1, '#7d7d7d');
-                ctx.fillStyle = gradient;
-                ctx.fill();
-                ctx.strokeStyle = '#000000';
-                ctx.lineWidth = 1;
-                ctx.stroke();
-                ctx.restore();
-            }
-        }
-
         class Particula {
             constructor() {
                 this.x = canvas.width / 2;
                 this.y = canvas.height / 2;
-                this.size = Math.random() * 1.5 + 1;
+                this.size = Math.random() * 1.5 + 0.5;
                 this.angle = Math.random() * Math.PI * 2;
                 this.speed = Math.random() * 3 + 1;
                 this.vx = Math.cos(this.angle) * this.speed;
@@ -342,23 +211,7 @@
             }
         }
 
-        let planetasArray = [];
         let particulasArray = [];
-        let luna = null;
-
-        function createPlanetas() {
-            const maxDistance = Math.min(canvas.width, canvas.height) / 2 - 50; // Ajusta la distancia máxima para que los planetas no se salgan
-            planetsData.forEach((planetData, index) => {
-                const distance = calculateDistance(index, planetsData.length, maxDistance);
-                if (planetData.name === 'Tierra') {
-                    const tierra = new Planeta({ ...planetData, distance });
-                    planetasArray.push(tierra);
-                    luna = new Luna(tierra);
-                } else {
-                    planetasArray.push(new Planeta({ ...planetData, distance }));
-                }
-            });
-        }
 
         function createParticulas() {
             for (let i = 0; i < 7; i++) { 
@@ -370,16 +223,6 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            planetasArray.forEach(planeta => {
-                planeta.update();
-                planeta.draw();
-            });
-
-            if (luna) {
-                luna.update();
-                luna.draw();
-            }
 
             createParticulas();
 
@@ -395,16 +238,12 @@
             requestAnimationFrame(animate);
         }
 
-        createPlanetas();
         animate();
 
         window.addEventListener("resize", () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            planetasArray = [];
-            createPlanetas();
         });
-
     </script>
 </body>
 </html>
