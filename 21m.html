@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación de Flores</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #87CEEB;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+        }
+        .flor {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 60px;
+            height: 80px;
+            background: url('https://i.imgur.com/O3zSjRh.png') no-repeat center;
+            background-size: contain;
+            cursor: pointer;
+        }
+        .carta {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 150px;
+            height: 100px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="flor"></div>
+        <div class="carta">💌 ¡Un mensaje especial!</div>
+    </div>
+    <script>
+        const flor = document.querySelector('.flor');
+        const carta = document.querySelector('.carta');
+
+        // Animar la flor brotando
+        gsap.to(flor, { scale: 1, duration: 2, ease: "elastic.out(1, 0.5)" });
+        
+        // Movimiento sutil de la flor
+        gsap.to(flor, { y: -10, repeat: -1, yoyo: true, duration: 2, ease: "sine.inOut" });
+
+        // Al hacer clic en la flor, mostrar la carta
+        flor.addEventListener('click', () => {
+            gsap.to(carta, { scale: 1, duration: 0.5, ease: "back.out(1.7)" });
+        });
+    </script>
+</body>
+</html>
