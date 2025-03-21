@@ -10,23 +10,32 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-end;
             width: 100vw;
             height: 100vh;
             background: url('fondono.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            box-sizing: border-box; /* Asegura que el tamaño incluye padding y borde */
+            box-sizing: border-box;
+        }
+
+        .terrain-container,
+        .grass-container,
+        .particle-container,
+        .tulip-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
         }
 
         .grass-container {
-            position: relative;
-            width: 104vw;
             height: 50vh;
-            overflow: hidden;
-            margin-bottom: -55vh;
-            margin-left: -2vw;
+            margin-bottom: 0;
+            z-index: 1;
         }
 
         .triangle {
@@ -38,16 +47,11 @@
             border-right: 0.5vh solid transparent;
             border-bottom: 25vh solid green;
             transform-origin: bottom;
-            animation: wave 3s infinite ease-in-out;
+            animation: wave 4s infinite ease-in-out;
         }
 
         .particle-container {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 100;
+            z-index: 2;
         }
 
         .particle {
@@ -62,101 +66,223 @@
         }
 
         .tulip-container {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 150;
+            z-index: 3;
         }
 
         .tulip {
             position: absolute;
             bottom: 0;
-            width: 6.24vh; /* Agrandar un 30% más */
-            height: 46.40664vh; /* Agrandar un 30% más en altura */
+            width: 6.24vh;
+            height: 46.40664vh;
             transform-origin: bottom center;
-            animation: sway 3s infinite ease-in-out;
+            animation: sway 5s infinite ease-in-out;
         }
 
         .tulip-flower {
             position: absolute;
-            bottom: 44.37264vh; /* Ajustar la posición para que el tallo y las hojas estén debajo */
+            bottom: 44.37264vh;
             left: 50%;
-            width: 9.36vh; /* Agrandar un 30% más */
-            height: 9.36vh; /* Agrandar un 30% más */
+            width: 9.36vh;
+            height: 9.36vh;
             transform: translateX(-50%);
-            z-index: 2; /* Asegurar que los pétalos estén arriba */
+            z-index: 2;
         }
 
         .petal {
             position: absolute;
             bottom: 0;
-            width: 5.616vh; /* Forma de elipse ancha, agrandar un 30% más */
-            height: 9.36vh; /* Agrandar un 30% más */
-            border-radius: 50%; /* Redondear todos los vértices */
-            background: linear-gradient(to top, #FFEB3B, #FFC107); /* Gradiente */
+            width: 5.616vh;
+            height: 9.36vh;
+            border-radius: 50%;
+            background: linear-gradient(to top, #FFEB3B, #FFC107);
         }
 
         .petal.center {
             left: 50%;
-            bottom: 1.56vh; /* Subir el pétalo del centro */
+            bottom: 1.56vh;
             transform: translateX(-50%) rotate(0deg);
-            background: linear-gradient(to top, #FFC107, #FF9800); /* Gradiente mejorado */
-            height: 7.488vh; /* Reducir el tamaño del pétalo central en un 20% */
+            background: linear-gradient(to top, #FFC107, #FF9800);
+            height: 7.488vh;
         }
 
         .petal.left {
             left: 25%;
             transform: translateX(-50%) rotate(-30deg);
-            background: linear-gradient(to top, #FFEB3B, #FFA000); /* Gradiente mejorado */
+            background: linear-gradient(to top, #FFEB3B, #FFA000);
         }
 
         .petal.right {
             right: 25%;
             transform: translateX(50%) rotate(30deg);
-            background: linear-gradient(to top, #FFEB3B, #FFA000); /* Gradiente mejorado */
+            background: linear-gradient(to top, #FFEB3B, #FFA000);
         }
 
         .tulip-stem {
             position: absolute;
             bottom: 0;
             left: 50%;
-            width: 1.56vh; /* Agrandar un 30% más */
-            height: 46.40664vh; /* Agrandar un 30% más en altura */
-            background: linear-gradient(to bottom, #388E3C, #2E7D32); /* Gradiente para el tallo */
-            border-radius: 0.78vh; /* Bordes redondeados para el tallo */
+            width: 1.56vh;
+            height: 46.40664vh;
+            background: linear-gradient(to bottom, #388E3C, #2E7D32);
+            border-radius: 0.78vh;
             transform: translateX(-50%);
-            z-index: 1; /* Asegurar que el tallo esté debajo de los pétalos */
+            z-index: 1;
         }
 
         .tulip-leaf {
             position: absolute;
-            width: 1.664vh; /* Agrandar un 30% más y luego reducir un 20% */
-            height: 8.32vh; /* Agrandar un 30% más y luego reducir un 20% */
-            background: linear-gradient(to bottom, #81C784, #66BB6A); /* Gradiente más claro para las hojas */
-            border-radius: 50%; /* Bordes redondeados en todas las esquinas */
+            width: 1.664vh;
+            height: 8.32vh;
+            background: linear-gradient(to bottom, #66BB6A, #4CA64E);
+            border-radius: 50%;
             transform-origin: bottom;
-            animation: leafSway 3s infinite ease-in-out;
-            z-index: 1; /* Asegurar que las hojas estén debajo de los pétalos */
+            animation: leafSway 4s infinite ease-in-out;
+            z-index: 1;
         }
 
         .tulip-leaf.left {
-            left: 40%; /* Centrar en el tallo */
-            transform: translateX(-90%) rotate(-45deg) translate(-1.04vh, 1.04vh); /* Ajustar para el nuevo tamaño */
+            left: 40%;
+            transform: translateX(-90%) rotate(-45deg) translate(-1.04vh, 1.04vh);
         }
 
         .tulip-leaf.right {
-            left: 40%; /* Centrar en el tallo */
-            transform: translateX(-10%) rotate(45deg) translate(1.04vh, 1.04vh); /* Ajustar para el nuevo tamaño */
+            left: 40%;
+            transform: translateX(-10%) rotate(45deg) translate(1.04vh, 1.04vh);
+        }
+
+        .card {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35vh;
+            height: 25vh;
+            background: #FFD54F;
+            border: 2vh solid;
+            border-color: #FBC02D;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            padding: 10px;
+			z-index: 5;
+            cursor: pointer;
+            transition: transform 0.5s, background 0.5s;
+			overflow: hidden;
+        }
+		.card.open {
+			width: 50vh;
+			height: 40vh;
+			background: #FFF8DC;
+			overflow-y: auto;
+		}
+
+        #he {
+            display: block;
+            margin: 0;
+            font-size: 6vh;
+            color: #8B4513;
+            transition: color 0.5s;
+			text-decoration: none
+        }
+
+        #subtitle {
+            display: block;
+            margin: 0;
+            font-size: 4vh;
+            color: #8B4513;
+            transition: color 0.5s;
+			text-decoration: none
+        }
+
+        .card-text {
+            display: block;
+            opacity: 0;
+            font-size: 2.5vh;
+            color: #6B4226;
+            text-decoration: underline;
+            text-decoration-color: lightgray;
+            transition: opacity 0.2s, color 0.2s, line-height 0.2s;
+			white-space: pre-wrap; 
+			word-wrap: break-word;
+        }
+
+        .card.open .card-text {
+            opacity: 1;
+        }
+
+        .heart {
+            font-size: 8vh;
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+			z-index: 5;
+        }
+
+        .card.open .heart {
+            display: none;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .close-button::before,
+        .close-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background-color: #8B4513;
+        }
+
+        .close-button::before {
+            transform: rotate(45deg);
+        }
+
+        .close-button::after {
+            transform: rotate(-45deg);
+        }
+
+        .decorative-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 2vh;
+            background-color: #FBC02D;
+            transition: opacity 0.2s;
+			z-index: 4;
+        }
+
+        .decorative-line.horizontal {
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .decorative-line.vertical {
+            transform: translate(-50%, -50%) rotate(90deg);
+            width: 75%;
+        }
+
+        .decorative-line.hidden {
+            opacity: 0;
         }
 
         @keyframes wave {
             0%, 100% {
-                transform: rotate(0deg);
+                transform: rotate(-1deg);
             }
             50% {
-                transform: rotate(8deg);
+                transform: rotate(4deg);
             }
         }
 
@@ -194,70 +320,107 @@
 
         @keyframes leafSway {
             0%, 100% {
-                transform: rotate(-4deg);
+                transform: rotate(-10deg);
             }
             50% {
                 transform: rotate(10deg);
             }
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+		
+        .flecha {
+            position: fixed; 
+            top: 10px; 
+            left: 10px; 
+            width: 4vh;
+            height: auto;
+            cursor: pointer; 
+            transition: transform 0.2s ease-in-out; 
+        }
+
+        .flecha:hover {
+            transform: scale(1.1); 
+        }
     </style>
 </head>
-<body>
+<body>	
+	<a href="index.html">
+        <img src="flecha.png" alt="Volver" class="flecha">
+    </a>
     <div class="terrain-container"></div>
     <div class="grass-container">
         <!-- Triángulos ondulados se generarán aquí -->
     </div>
     <div class="particle-container"></div>
     <div class="tulip-container"></div>
+    <div class="card">
+        <div class="close-button"></div>
+        <div class="decorative-line horizontal"></div>
+        <div class="decorative-line vertical"></div>
+        <p class="card-text" id="he">🌻❤️🌻❤️🌻</p>
+        <p class="card-text" id="subtitle"> Feliz 21 Marzo, Mi vida C: </p>
+        <p class="card-text">Holaa carita de nuez/puchaina me gustaría mucho poder pasar este día contigo tilín :3 junto a ti, darte todas las cosas bonitas que te mereces, abrazarte y darte muchos muchos besos, tantos que te quedes llena de cariño c: pero aún así quería darte algo hoy, por que aunque no te pueda dar cosas presencialmente aún mi vida, quería hacerte esta nueva sección en donde quiero darte este regalito 😋 antes que nada ☝️🤓 quería decirte que eres muy importante en mi existencia y en mi todo, tilín,para mi tenerte en mi vida es la cosa más bella que me pudo haber pasado en toda la life, eres mi tilín la persiana más importante en todo el mundo y por lo mismo todo me recuerda a ti :3 cuando veo un chascarrillo, un emoji, un sticker, una sentimiento, una acción que hayamos hecho, una situación o una rola me acuerdo de ti amor, cada vez que mi corazón palpita desea estar contigo estar a tu lad, es un sentimiento raro, por qué cuando estoy contigo parece que me voy a morir de una taquicardia pero Ñao, de hecho me siento cálido y tranquilo a tu lado, me llena un sentimiento inmenso de felicidad donde verdaderamente me siento contento y pleno tilín :) cada vez que te digo te amo, me gustas, me encantas, te adoro, te quiero mucho, es por que realmente lo siento, por que yo te adoro con todo mi corazón y por lo mismo haré todo lo posible para que seas feliz conmigo :3 cada vez que hablo contigo realmente me enamoro de nuevo, cada vez que veo tus hermosos ojos me quedo feliz de tenerte a mi lado, saber que esos ojitos bellos me quieren es uno de los sentimientos más felices en toda mi vida, cada vez que hieres amable con lo tilines de por ahí, que me tiras jeit por que así te gusta, verdaderamente me quedo prendado, siento que cada acción que haces tilín me enamora más y más, no existe ningún infinito que de la inmensidad con la que te quiero :D te extraño mucho tilín, por favor no me dejes nunca mi amor, te amo mucho, eres mi motivo para caminar eres el motivo por el que haré un lavadora :3 tú eres mi motivo en seguir en la vida, porfavor no me dejes tilín, perdóname por pedirte algo tan egoísta pero honestamente no sé cómo sería no tenerte en mi vida simplemente respirar sabiendo que no puedo estar contigo me dolería mucho mucho 😞 te amodoro tilín, recuerda que siempre estoy para ti mi vida, que cada vez que te sientas triste, cada vez que te emociones, cada vez que te pase algo, por más mínimo que sea quiero estar y acompañarte en el sentimiento, amo que me cuentes tu día, amo que me digas cosas sencillas que te pasan en el día, por qué quiero saber de ti, quiero saber cómo te fue, que comiste, cómo dormiste, si ya te hechaste tu nap, si andas chambeando, que andas haciendo, quiero saber de ti en todos mis días, quiero ser tu diario, que te haga feliz en tu vida mi amor 🧡 por eso te quería dar este mini regalo c: espero que de verdad te guste el escenario que preparé para ti y solo para ti mi amor :3 Tu eres única en este mundillo, no existe nadie capaz de llegar a los talones lo divertida que eres, lo elocuente que eres, tu creatividad, tu manera de vivir, tu forma de hablar con otras persianitas, tu hermosa voz, tus lindos ojitos, tu tilín, de verdad eres bella en todos los sentidos y me hace muy feliz saber que puedo compartir mis días contigo :3 adoro cada vez que aunque a veces no me entiendas me pongas atención en lo que digo :) gracias amor por todo tu amor que me has dado, aunque realmente no nos llevemos conociendo mucho tiempo, amo cada parte de ti todas y cada una de las cosas que te hacen ser tu Ü PD: Sabías que este día como tal se creó por una rola? Lol de hecho es la que se está reproduciendo c: bueno si le das click xd lol, Toma 12 tulipanes amarillos mi vida c: otro día te explico cómo funciona :> ntcs bueno si quieres si pero si me tomare mi tiempo LOL, Deseo que tengas un maravillosos día hoy, lleno de mucha felicidad por que quiero que hoy seas muy feliz ☝️🥳☝️🥳 como cuando me gano un elote LOL 🌽 q mal, en fin tilín espero tengas un grandioso y fabulosos día, disfrútalo mucho y me mandas un CARA DE COLA cuando termines de leer esta cartita xd T amo, sonríe mucho por que verla es de lo más bonito que hay :3</p>
+        <div class="heart">❤️</div>
+    </div>
+	<audio id="lovemp3" loop>
+		<source src="floresamarillas.mp3" type="audio/mpeg">
+	</audio>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const grassContainer = document.querySelector('.grass-container');
             const particleContainer = document.querySelector('.particle-container');
             const tulipContainer = document.querySelector('.tulip-container');
+            const card = document.querySelector('.card');
+            const music = document.getElementById('music');
+            const horizontalLine = document.querySelector('.decorative-line.horizontal');
+            const verticalLine = document.querySelector('.decorative-line.vertical');
 
             for (let i = 0; i < 800; i++) {
                 const triangle = document.createElement('div');
                 triangle.classList.add('triangle');
 
-                // Generar dispersión en el eje Y
-                const yPos = Math.random() * -1; // Rango de 0vh a 5vh
+                const yPos = Math.random() * -1;
                 triangle.style.bottom = `${yPos}vh`;
-                triangle.style.zIndex = Math.floor(10 - yPos); // Invertir el orden de las capas
+                triangle.style.zIndex = Math.floor(10 - yPos);
 
-                // Generar tonos de verde aleatorios
                 const greenTone = `rgb(${Math.random() * 50}, ${100 + Math.random() * (155 - yPos * 5)}, ${Math.random() * 50})`;
                 triangle.style.borderBottomColor = greenTone;
 
-                // Tamaño aleatorio de los triángulos
-                const size = 20 + Math.random() * 12; // Altura entre 10vh y 15vh
+                const size = 22 + Math.random() * 12;
                 triangle.style.borderLeftWidth = `${size / 20}vh`;
                 triangle.style.borderRightWidth = `${size / 20}vh`;
                 triangle.style.borderBottomWidth = `${size}vh`;
 
-                // Posición aleatoria de los triángulos
-                triangle.style.left = `${Math.random() * 104}vw`; // Aumentar el rango para que no se vean los bordes
+                triangle.style.left = `${Math.random() * 104}vw`;
                 triangle.style.animationDelay = `${Math.random() * 0.5}s`;
 
                 grassContainer.appendChild(triangle);
             }
 
-            for (let i = 0; i < 50; i++) { // Reducir la cantidad de partículas
+            for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
 
-                // Generar tonos de amarillo aleatorios
                 const yellowTone = `rgb(255, ${255 - Math.random() * 155}, 0)`;
                 particle.style.background = yellowTone;
 
-                // Posición aleatoria de las partículas
                 particle.style.left = `${Math.random() * 100}vw`;
                 particle.style.bottom = `${Math.random() * 20}vh`;
-                particle.style.animationDelay = `${Math.random() * 10}s`; // Aumentar el ciclo de animación
+                particle.style.animationDelay = `${Math.random() * 10}s`;
 
                 particleContainer.appendChild(particle);
             }
 
-            // Reutilizar partículas
             const particles = document.querySelectorAll('.particle');
             particles.forEach(particle => {
                 particle.addEventListener('animationiteration', () => {
@@ -266,15 +429,13 @@
                 });
             });
 
-            // Generar 12 tulipanes amarillos con tallo y hojas redondeadas
             const tulipCount = 12;
-            const sectorWidth = 100 / tulipCount; // Ancho de cada sector
+            const sectorWidth = 100 / tulipCount;
 
             for (let i = 0; i < tulipCount; i++) {
                 const tulip = document.createElement('div');
                 tulip.classList.add('tulip');
 
-                // Ajustar el tamaño de cada tulipán de forma aleatoria entre el 70% y el 100%
                 const scale = 0.7 + Math.random() * 0.3;
                 tulip.style.transform = `scale(${scale})`;
 
@@ -300,14 +461,14 @@
                 tulip.appendChild(stem);
                 tulip.appendChild(tulipFlower);
 
-                // Generar entre 1 y 3 hojas por tulipán
                 const numLeaves = Math.floor(Math.random() * 3) + 1;
-                const leafSectorHeight = (46.40664 - 5) / numLeaves; // Altura de cada sector, menos 3vh
+                const leafSectorHeight = (46.40664 - 10) / numLeaves;
 
                 for (let j = 0; j < numLeaves; j++) {
                     const leaf = document.createElement('div');
                     leaf.classList.add('tulip-leaf');
-                    leaf.style.bottom = `${leafSectorHeight * j + leafSectorHeight / 2 + 3}vh`; // Posición en medio de cada sector, más 3vh
+                    const randomY = -3 + Math.random() * 6; // Rango de -2vh a 2vh
+                    leaf.style.bottom = `${leafSectorHeight * j + leafSectorHeight / 2 + 3 + randomY}vh`;
                     if (Math.random() > 0.5) {
                         leaf.classList.add('left');
                     } else {
@@ -316,15 +477,50 @@
                     tulip.appendChild(leaf);
                 }
 
-                // Posición aleatoria de los tulipanes dentro de su sector en el eje X
                 const sectorStart = i * sectorWidth;
                 const leftPosition = sectorStart + Math.random() * sectorWidth;
                 tulip.style.left = `${leftPosition}vw`;
-                tulip.style.bottom = `${Math.random() * 14 - 15}vh`; // Rango de -1vh a -15vh en el eje Y
+                tulip.style.bottom = `${Math.random() * 14 - 15}vh`;
 
                 tulipContainer.appendChild(tulip);
             }
+
+            document.body.addEventListener('click', function() {
+                if (card.style.display === 'none' || card.style.display === '') {
+                    card.style.display = 'block';
+                    card.classList.remove('open');
+                    horizontalLine.classList.remove('hidden');
+                    verticalLine.classList.remove('hidden');
+                    music.play();
+                } else {
+                    card.classList.toggle('open');
+                    if (card.classList.contains('open')) {
+                        horizontalLine.classList.add('hidden');
+                        verticalLine.classList.add('hidden');
+                    } else {
+                        horizontalLine.classList.remove('hidden');
+                        verticalLine.classList.remove('hidden');
+                    }
+                }
+            });
+
+            const closeButton = document.querySelector('.close-button');
+            closeButton.addEventListener('click', function(event) {
+                event.stopPropagation();
+                card.style.display = 'none';
+                music.pause();
+                music.currentTime = 0;
+                horizontalLine.classList.remove('hidden');
+                verticalLine.classList.remove('hidden');
+            });
         });
+		
+			document.addEventListener("click", function() {
+		const audio = document.getElementById("lovemp3");
+		if (audio.paused) {
+			audio.play();
+		}
+	}, { once: true }); 
     </script>
 </body>
 </html>
